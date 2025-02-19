@@ -1,33 +1,24 @@
-main change here is to 'prevent default' of the form post event
+
+this change uses `x-bind` to alter the behavior of an HTML 'type' attribute 
 
 ```html
-    <form x-data="signupForm" @submit.prevent="submitForm">
+<input x-bind:type="showPass ? 'text' : 'password'" x-model="password">
 ```
 
-analogous to prevent default in react and similar or just pure JS but I still think the syntax is a bit weird
+and is bound to 'password' in the astro function and holds the literal password string entered by the user
 
-so, sinupForm is still linking Astro to use this in an external file where it is an anon function 
-
-this is a part of [x-on prevent](https://alpinejs.dev/directives/on#prevent) where `x-on` is a *directive* and at the same level / namespace of others such as
-
-* x-data
-* x-init
-* x-bind
-* x-show
-
-and so on and `x-on` _allows you to easily run code on dispatched DOM events_
-
-happy days, lets move on
-
-other changes in this are to do with 
+`showpass` is a boolean value that is toggled by 
 
 ```html
-        <button type="button" x-on:click.shift="console.log('click')">click</button>
-        <button type="button" x-on:mouseleave.ctrl="console.log('mouseleave')">mouseleave</button>
-        <button type="button" x-on:dblclick="console.log('dblclick')">dblclick</button>
+<button type="button" @click="showPass = !showPass">
+    <span x-text="showPass ? 'Hide' : 'Show'"></span>
+</button>
 ```
 
-where these are other lets call them 'behaviours' for now that can be augmented to trigger events, but in these exapmples just console logs
+a `@click` event in alpine and it toggles the `showpass` variable true / false
 
-however in a web form, needing a user to shift-click, mouse leave or double click is of limited significance but it could be used in other scenarios more meaningfully, such as drawing apps or such
+I can see how this can be very useful when handling form data and logins but I find the pattern a bit convoluted if not contrived, all using a number of 'things' to achieve a specific outcome
 
+all these things and those like them can be used as cargo cult cut and paste when we know we want to do a given thing this is what we copy in to do the thing
+
+we don't necessarily understand how the solution is derided, we just know this is how we can do something
