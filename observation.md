@@ -1,19 +1,33 @@
-[x-bind with classes](https://alpinejs.dev/directives/bind#binding-classes) is introduced where something like
+main change here is to 'prevent default' of the form post event
 
 ```html
-<div :class="open ? '' : 'hidden'">
-        Dropdown Contents...
-</div>
+    <form x-data="signupForm" @submit.prevent="submitForm">
 ```
 
-is shorthand for `x-bind:class=...` 
+analogous to prevent default in react and similar or just pure JS but I still think the syntax is a bit weird
 
-and a ternary can be used to switch values / change state
+so, sinupForm is still linking Astro to use this in an external file where it is an anon function 
 
-this is an example where the logic is inlined into the html which can be an anti pattern by purists potentially but I see this as programatic so long as it is understandable, clean and simple enough not to be put elsewhere
+this is a part of [x-on prevent](https://alpinejs.dev/directives/on#prevent) where `x-on` is a *directive* and at the same level / namespace of others such as
 
-whats the point of having things in lots of different places if what that then means is you can't see what is going on and we have many different files now, just for the sake of separation ?
+* x-data
+* x-init
+* x-bind
+* x-show
 
-the nice effect of this pattern is to dynamically change the style and state of a text value in the page to give user feedback of how many characters are left remaining to be entered into a size restricted field
+and so on and `x-on` _allows you to easily run code on dispatched DOM events_
 
-a,k.a a tweet or exapmles of a password of minium length, a name of max length etc 
+happy days, lets move on
+
+other changes in this are to do with 
+
+```html
+        <button type="button" x-on:click.shift="console.log('click')">click</button>
+        <button type="button" x-on:mouseleave.ctrl="console.log('mouseleave')">mouseleave</button>
+        <button type="button" x-on:dblclick="console.log('dblclick')">dblclick</button>
+```
+
+where these are other lets call them 'behaviours' for now that can be augmented to trigger events, but in these exapmples just console logs
+
+however in a web form, needing a user to shift-click, mouse leave or double click is of limited significance but it could be used in other scenarios more meaningfully, such as drawing apps or such
+
