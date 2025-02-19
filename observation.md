@@ -1,22 +1,15 @@
-alpinejs is interesting in that it can have the js held within the html and as part of `x-data` 
+the project files are reset now to use NetNinja [crash course](https://github.com/iamshaunjp/alpine-crash-course) files and will follow this from here on in
 
-here it is still doing just that however 
+the first change is to add `x-data` to use `signupForm` ref to an anon function which we've seen already in `stage-001`
 
-```html
-<div x-data="counter">
-```
+next to introduce 2 things 
 
-is calling the function counter as defined in the `<script>` tag earlier of `index.js`
+* [x-model](https://alpinejs.dev/directives/model)
+* [x-text](https://alpinejs.dev/directives/text)
 
-where it has an event listener registered to fire on `alpine:init` to add `Alpine.data` ....
+using these in conjunction allows for the 'binding' of some text on the page to inputs in the form 
 
-now this is not evident unless you read the docs on [alpine.data](https://alpinejs.dev/globals/alpine-data) and put this in and I'd guess is what would be inferred if you were just to insert JS in the `x-data` tag inline
+so a sort of 2-way binding thing is going on, where if we change the value of one of these elements in the js code, it changes the value that is loaded in html
 
-so it is not as simple as banging in some JS into a file in the hopes Alpine will just run it, some infrastructure code is required to get this done.
-
-`Alpine.data` is one of 3 'globals' namely
-
-* [data](https://alpinejs.dev/globals/alpine-data)
-* [store](https://alpinejs.dev/globals/alpine-store)
-* [bind](https://alpinejs.dev/globals/alpine-bind)
+vice-versa, changing the value in the form pushes values back and they are reflected in the text element of the page, so we can observe this happening
 
