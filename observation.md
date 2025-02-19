@@ -1,24 +1,46 @@
 
-this change uses `x-bind` to alter the behavior of an HTML 'type' attribute 
+ changes are all in the `index.js` file  and correlate to a method of form validation in pure JS
 
-```html
-<input x-bind:type="showPass ? 'text' : 'password'" x-model="password">
+ this is nice as it uses no 3rd party module, is clean, easy to see what is going on and above all easily maintainable in our own code
+
+a point perhaps worth re-iterating, no 3rd party involvement for basic, and possibly not so basic, form validation so long as you know enough modern JS to keep it pretty and effective
+
+so long as we do not have to support IE 8 we should be happy
+
+```javascriptdodnt
+validateForm() {
+    this.errors = {}
+
+    if (this.username.length < 3) {
+        this.errors.username = 'Username must be at least 3 characters.'
+    }
+    if (this.password.length < 6) {
+        this.errors.password = 'Password must be at least 6 characters.'
+    }
+    if (this.password !== this.passwordConfirm) {
+        this.errors.passwordConfirm = 'Passwords do not match.'
+    }
+    if (!this.belt) {
+        this.errors.belt = 'Please select a belt color.'
+    }
+    if (this.bio.length < 10) {
+        this.errors.bio = 'Bio must be at least 10 characters.'
+    }
+},
+....
 ```
 
-and is bound to 'password' in the astro function and holds the literal password string entered by the user
+a bunch of `if` statements get run when `validateform()` runs
 
-`showpass` is a boolean value that is toggled by 
+the whole thing is orchestrated in `index.js` as the submit form event is already registered in an earlier stage and
 
-```html
-<button type="button" @click="showPass = !showPass">
-    <span x-text="showPass ? 'Hide' : 'Show'"></span>
-</button>
+```javascript
+        submitForm($event) {
+            this.validateForm()
+            console.log(this.errors)
+
+...
 ```
 
-a `@click` event in alpine and it toggles the `showpass` variable true / false
+both invokes `valdateForm` and logs its output using the `errors` part of the alpine state object / anon function
 
-I can see how this can be very useful when handling form data and logins but I find the pattern a bit convoluted if not contrived, all using a number of 'things' to achieve a specific outcome
-
-all these things and those like them can be used as cargo cult cut and paste when we know we want to do a given thing this is what we copy in to do the thing
-
-we don't necessarily understand how the solution is derided, we just know this is how we can do something
