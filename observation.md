@@ -1,15 +1,19 @@
-the project files are reset now to use NetNinja [crash course](https://github.com/iamshaunjp/alpine-crash-course) files and will follow this from here on in
+[x-bind with classes](https://alpinejs.dev/directives/bind#binding-classes) is introduced where something like
 
-the first change is to add `x-data` to use `signupForm` ref to an anon function which we've seen already in `stage-001`
+```html
+<div :class="open ? '' : 'hidden'">
+        Dropdown Contents...
+</div>
+```
 
-next to introduce 2 things 
+is shorthand for `x-bind:class=...` 
 
-* [x-model](https://alpinejs.dev/directives/model)
-* [x-text](https://alpinejs.dev/directives/text)
+and a ternary can be used to switch values / change state
 
-using these in conjunction allows for the 'binding' of some text on the page to inputs in the form 
+this is an example where the logic is inlined into the html which can be an anti pattern by purists potentially but I see this as programatic so long as it is understandable, clean and simple enough not to be put elsewhere
 
-so a sort of 2-way binding thing is going on, where if we change the value of one of these elements in the js code, it changes the value that is loaded in html
+whats the point of having things in lots of different places if what that then means is you can't see what is going on and we have many different files now, just for the sake of separation ?
 
-vice-versa, changing the value in the form pushes values back and they are reflected in the text element of the page, so we can observe this happening
+the nice effect of this pattern is to dynamically change the style and state of a text value in the page to give user feedback of how many characters are left remaining to be entered into a size restricted field
 
+a,k.a a tweet or exapmles of a password of minium length, a name of max length etc 
