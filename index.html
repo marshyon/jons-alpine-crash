@@ -64,11 +64,9 @@
             <label>Belt Color:
                 <select x-model="belt">
                     <option value="">Select a belt</option>
-                    <option value="black">Black</option>
-                    <option value="white">White</option>
-                    <option value="red">Red</option>
-                    <option value="orange">Orange</option>
-                    <option value="brown">Brown</option>
+                    <template x-for="(color, idx) in colors" x-bind:key="idx">
+                        <option x-bind:value=color x-text="color"></option>
+                    </template>
                 </select>
             </label>
 

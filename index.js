@@ -5,6 +5,7 @@ document.addEventListener('alpine:init', () => {
         passwordConfirm: '',
         belt: '',
         bio: '',
+        colors: ['white', 'blue', 'purple', 'brown', 'black', 'chartreuse'],
         newsletter: true,
         showPass: false,
         errors: {},
