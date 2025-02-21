@@ -1,6 +1,8 @@
-# Astro Crash Course Notes
+# Alpine JS Crash Course Notes
 
-this is the beginning of jons Astro crash course journey
+this is the beginning of jons Alpine js crash course journey
+
+it follows closesly [alpine-crash-course](https://github.com/iamshaunjp/alpine-crash-course)
 
 things will be saved to branches, so check each out to see what he is doing
 
