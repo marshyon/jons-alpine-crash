@@ -8,6 +8,7 @@ document.addEventListener('alpine:init', () => {
         colors: ['white', 'blue', 'purple', 'brown', 'black', 'chartreuse'],
         newsletter: true,
         showPass: false,
+        success: false,
         errors: {},
 
         validateForm() {
@@ -37,6 +38,8 @@ document.addEventListener('alpine:init', () => {
                 console.log(this.username, this.password, this.belt, this.bio, this.newsletter)
 
                 $event.target.reset()
+
+                this.success = true
             }
         }
     }))

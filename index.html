@@ -101,6 +101,14 @@
 
         <!-- submit button -->
         <button type="submit">Submit</button>
+
+        <!-- success message -->
+        <div class="overlay" x-show="success" x-cloak>
+            <div class="modal">
+                <h2>Success!</h2>
+                <p>Thanks for signing up, <span x-text="username"></span>!</p>
+                <button @click="success = false">Close</button>
+            </div>
     </form>
 
 </body>
